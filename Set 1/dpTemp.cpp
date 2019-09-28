@@ -2,6 +2,10 @@
 using namespace std;
 
 const int maxPrimeNum = 187;
+const int maxN = 1121;
+const int maxK = 15;
+ 
+int dpCount[maxN][maxK];
 
 int prime[187] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,
 	103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,
@@ -18,37 +22,54 @@ int targetSum, requiredNum;
 
 int SumCount;
 
-void FindCount(int i, int currentCount, int currentSum)
+void InitDp()
 {
+	for (int i = 0; i < maxN; ++i)
+	{
+		for (int j = 0; j < maxK; ++j)
+		{
+			dpCount[i][j] = -1;
+		}
+	}
+}
+
+int FindCount(int i, int currentCount, int currentSum)
+{
+	if (-1 != dpCount[currentSum][currentCount])
+	{
+		return dpCount[currentSum][currentCount];
+	}
 
 	if (currentSum > targetSum)
 	{
-		return;
+		return 0;
 	}
 
 	if (currentCount == requiredNum)
 	{
 		if (currentSum == targetSum)
 		{
-			SumCount++;
+			return dpCount[currentSum][currentCount] = 1;
 		}
 
-		return;
+		return dpCount[currentSum][currentCount] = 0;
 	}
 
 	if (prime[i] > targetSum)
 	{
-		return;
+		return 0;
 	}
 
 	if (i == maxPrimeNum)
 	{
-		return;
+		return 0;
 	}
 
-	FindCount(i + 1, currentCount, currentSum);
+	int left = FindCount(i + 1, currentCount, currentSum);
 
-	FindCount(i + 1, currentCount + 1,currentSum + prime[i]);
+	int right = FindCount(i + 1, currentCount + 1,currentSum + prime[i]);
+
+	return dpCount[currentSum][currentCount] = left + right;
 }
 
 void Display()
@@ -60,6 +81,8 @@ int main(int argc, char const *argv[])
 {
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
+
+	InitDp();
 
 	cin >> targetSum >> requiredNum;
 
