@@ -24,6 +24,11 @@ int Abs(int x)
 
 void FindMinPath(int i, int index, int pathCost)
 {
+	if (pathCost > minimumPath)
+	{
+		return;
+	}
+
 	if (i == beeperNum)
 	{
 		pathCost += Abs(posX[index] - shopX) + Abs(posY[index] - shopY);
