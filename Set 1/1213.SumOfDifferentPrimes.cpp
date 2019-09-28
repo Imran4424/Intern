@@ -33,7 +33,10 @@ void Sieve()
 
 	int x = 0;
 
-	
+	for (int i = 0; i < count; ++i)
+	{
+		
+	}	
 }
 
 
