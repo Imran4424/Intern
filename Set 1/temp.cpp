@@ -53,10 +53,10 @@ int FindCount(int i, int currentCount, int currentSum)
 		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
-	if (prime[i] > targetSum)
-	{
-		return dpCount[i][currentCount][currentSum] = 0;
-	}
+	// if (prime[i] > targetSum)
+	// {
+	// 	return dpCount[i][currentCount][currentSum] = 0;
+	// }
 
 	if (i == maxPrimeNum)
 	{
