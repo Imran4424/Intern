@@ -158,6 +158,11 @@ void Sieve()
 
 void FindCount(int i, int currentCount, int currentSum)
 {
+	if (prime[i] > targetSum)
+	{
+		return;
+	}
+
 	if (currentCount == requiredNum)
 	{
 		if (0 == targetSum)
@@ -177,10 +182,9 @@ void FindCount(int i, int currentCount, int currentSum)
 
 	if (currentSum >= prime[i])
 	{
-		FindCount(i + 1, currentCount + 1,currentSum - prime[i]);
+		FindCount(i + 1, currentCount + 1, currentSum - prime[i]);
 	}
 
-	
 }
 
 void Display()
