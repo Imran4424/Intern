@@ -50,14 +50,20 @@ void Sieve()
 	maxPrimeNum = x;	
 }
 
-void FindCount(int i, int currentSum)
+void FindCount(int i, int currentCount, int currentSum)
 {
+
 	if (currentSum > targetSum)
 	{
 		return;
 	}
 
-	if (i == requiredNum)
+	if (prime[i] > targetSum)
+	{
+		return;
+	}
+
+	if (currentCount == requiredNum)
 	{
 		if (currentSum == targetSum)
 		{
@@ -72,9 +78,9 @@ void FindCount(int i, int currentSum)
 		return;
 	}
 
-	FindCount(i + 1, currentSum);
+	FindCount(i + 1, currentCount, currentSum);
 
-	FindCount(i + 1, currentSum + prime[i]);
+	FindCount(i + 1, currentCount + 1,currentSum + prime[i]);
 }
 
 void Display()
@@ -91,12 +97,12 @@ int main(int argc, char const *argv[])
 
 	cin >> targetSum >> requiredNum;
 
-	while(0 == targetSum && 0 == requiredNum)
+	while(0 != targetSum && 0 != requiredNum)
 	{
 		// clearing test cases
 		SumCount = 0;
 
-		FindCount(0, 0);
+		FindCount(0, 0, 0);
 
 		Display();
 
