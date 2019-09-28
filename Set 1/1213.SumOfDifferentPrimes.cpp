@@ -10,6 +10,8 @@ int maxPrimeNum;
 
 int targetSum, requiredNum;
 
+int SumCount;
+
 void InitPrime()
 {
 	for (int i = 0; i < mSize; ++i)
@@ -49,17 +51,56 @@ void Sieve()
 }
 
 void FindCount(int i, int currentSum)
+{
+	if (currentSum > targetSum)
+	{
+		return;
+	}
 
+	if (i == requiredNum)
+	{
+		if (currentSum == targetSum)
+		{
+			SumCount++;
+		}
+
+		return;
+	}
+
+	if (i == maxPrimeNum)
+	{
+		return;
+	}
+
+	FindCount(i + 1, currentSum);
+
+	FindCount(i + 1, currentSum + prime[i]);
+}
+
+void Display()
+{
+	cout << SumCount << endl;
+}
 
 int main(int argc, char const *argv[])
 {
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+
 	Sieve();
 
 	cin >> targetSum >> requiredNum;
 
 	while(0 == targetSum && 0 == requiredNum)
 	{
-		
+		// clearing test cases
+		SumCount = 0;
+
+		FindCount(0, 0);
+
+		Display();
+
+		cin >> targetSum >> requiredNum;
 	}
 
 	return 0;
