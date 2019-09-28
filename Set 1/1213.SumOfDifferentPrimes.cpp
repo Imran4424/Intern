@@ -58,11 +58,6 @@ void FindCount(int i, int currentCount, int currentSum)
 		return;
 	}
 
-	if (prime[i] > targetSum)
-	{
-		return;
-	}
-
 	if (currentCount == requiredNum)
 	{
 		if (currentSum == targetSum)
@@ -70,6 +65,11 @@ void FindCount(int i, int currentCount, int currentSum)
 			SumCount++;
 		}
 
+		return;
+	}
+
+	if (prime[i] > targetSum)
+	{
 		return;
 	}
 
