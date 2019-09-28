@@ -2,6 +2,7 @@
 using namespace std;
 
 const int mSize = 1122;
+const int maxK = 15;
 
 bool isPrime[mSize];
 int prime[mSize/3];
@@ -50,43 +51,66 @@ void Sieve()
 	maxPrimeNum = x;	
 }
 
-void FindCount(int i, int currentCount, int currentSum)
-{
+int dpCount[188][maxK][mSize];
 
-	if (currentSum > targetSum)
+void InitDp()
+{
+	for (int i = 0; i < maxPrimeNum; ++i)
 	{
-		return;
+		for (int j = 0; j < maxK; ++j)
+		{
+			for (int k = 0; k < mSize; ++k)
+			{
+				dpCount[i][j][k] = -1;
+			}
+		}
+	}
+}
+
+int FindCount(int i, int currentCount, int currentSum)
+{
+	if (-1 != dpCount[i][currentCount][currentSum])
+	{
+		return dpCount[i][currentCount][currentSum];
 	}
 
-	if (currentCount == requiredNum)
+	if ( 0 == currentCount)
 	{
-		if (currentSum == targetSum)
+		if (0 == currentSum)
 		{
-			SumCount++;
+			return dpCount[i][currentCount][currentSum] = 1;
 		}
 
-		return;
+		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
 	if (prime[i] > targetSum)
 	{
-		return;
+		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
 	if (i == maxPrimeNum)
 	{
-		return;
+		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
-	FindCount(i + 1, currentCount, currentSum);
+	int left = FindCount(i + 1, currentCount, currentSum);
 
-	FindCount(i + 1, currentCount + 1,currentSum + prime[i]);
+	int right;
+
+	if (currentSum >= prime[i])
+	{
+		right = FindCount(i + 1, currentCount - 1, currentSum - prime[i]);
+	}
+	else
+	{
+		right = 0;
+	}
+	
+
+	return dpCount[i][currentCount][currentSum] = left + right;
 }
 
-void Display()
-{
-	cout << SumCount << endl;
-}
 
 int main(int argc, char const *argv[])
 {
@@ -94,17 +118,13 @@ int main(int argc, char const *argv[])
 	freopen("output.txt", "w", stdout);
 
 	Sieve();
+	InitDp();
 
 	cin >> targetSum >> requiredNum;
 
 	while(0 != targetSum && 0 != requiredNum)
 	{
-		// clearing test cases
-		SumCount = 0;
-
-		FindCount(0, 0, 0);
-
-		Display();
+		cout << FindCount(0, requiredNum, targetSum) << endl;
 
 		cin >> targetSum >> requiredNum;
 	}

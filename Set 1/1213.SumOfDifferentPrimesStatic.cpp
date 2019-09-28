@@ -5,7 +5,7 @@ const int maxPrimeNum = 187;
 const int maxN = 1121;
 const int maxK = 15;
  
-int dpCount[maxN][maxK];
+int dpCount[maxPrimeNum + 1][maxK][maxN];
 
 int prime[187] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,
 	103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,
@@ -20,67 +20,69 @@ int prime[187] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,
 
 int targetSum, requiredNum;
 
-int SumCount;
-
 void InitDp()
 {
-	for (int i = 0; i < maxN; ++i)
+	for (int i = 0; i <= maxPrimeNum; ++i)
 	{
 		for (int j = 0; j < maxK; ++j)
 		{
-			dpCount[i][j] = -1;
+			for (int k = 0; k < maxN; ++k)
+			{
+				dpCount[i][j][k] = -1;
+			}
 		}
 	}
 }
 
 int FindCount(int i, int currentCount, int currentSum)
 {
-	if (-1 != dpCount[currentSum][currentCount])
+	if (-1 != dpCount[i][currentCount][currentSum])
 	{
-		return dpCount[currentSum][currentCount];
+		return dpCount[i][currentCount][currentSum];
 	}
 
-	if (currentSum > targetSum)
+	if ( 0 == currentCount)
 	{
-		return 0;
-	}
-
-	if (currentCount == requiredNum)
-	{
-		if (currentSum == targetSum)
+		if (0 == currentSum)
 		{
-			return dpCount[currentSum][currentCount] = 1;
+			return dpCount[i][currentCount][currentSum] = 1;
 		}
 
-		return dpCount[currentSum][currentCount] = 0;
+		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
 	if (prime[i] > targetSum)
 	{
-		return 0;
+		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
 	if (i == maxPrimeNum)
 	{
-		return 0;
+		return dpCount[i][currentCount][currentSum] = 0;
 	}
 
 	int left = FindCount(i + 1, currentCount, currentSum);
 
-	int right = FindCount(i + 1, currentCount + 1,currentSum + prime[i]);
+	int right;
 
-	return dpCount[currentSum][currentCount] = left + right;
+	if (currentSum >= prime[i])
+	{
+		right = FindCount(i + 1, currentCount - 1, currentSum - prime[i]);
+	}
+	else
+	{
+		right = 0;
+	}
+	
+
+	return dpCount[i][currentCount][currentSum] = left + right;
 }
 
-void Display()
-{
-	cout << SumCount << endl;
-}
 
 int main(int argc, char const *argv[])
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("input.txt", "r", stdin);
+	// freopen("output.txt", "w", stdout);
 
 	InitDp();
 
@@ -88,11 +90,7 @@ int main(int argc, char const *argv[])
 
 	while(0 != targetSum && 0 != requiredNum)
 	{
-		// clearing test cases
-		
-		SumCount = FindCount(0, 0, 0);
-
-		Display();
+		cout << FindCount(0, requiredNum, targetSum) << endl;
 
 		cin >> targetSum >> requiredNum;
 	}
