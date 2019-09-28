@@ -89,9 +89,8 @@ int main(int argc, char const *argv[])
 	while(0 != targetSum && 0 != requiredNum)
 	{
 		// clearing test cases
-		SumCount = 0;
-
-		FindCount(0, 0, 0);
+		
+		SumCount = FindCount(0, 0, 0);
 
 		Display();
 
