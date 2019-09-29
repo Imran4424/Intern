@@ -20,6 +20,19 @@ void Init()
 	}
 }
 
+int Solve(int i, int currentSum)
+{
+	if (-1 != dpWeight[i][currentSum])
+	{
+		return dpWeight[i][currentSum];
+	}
+
+	if (i == totalObject)
+	{
+		
+	}
+}
+
 void ReadCase()
 {
 	cin >> noskipws;
