@@ -20,6 +20,16 @@ void Init()
 	}
 }
 
+int Absolute(int x)
+{
+	if (x < 0)
+	{
+		-x;
+	}
+
+	return x;
+}
+
 int Solve(int i, int currentSum)
 {
 	if (-1 != dpWeight[i][currentSum])
@@ -29,7 +39,9 @@ int Solve(int i, int currentSum)
 
 	if (i == totalObject)
 	{
-		
+		int otherhalf = totalSum - currentSum;
+
+
 	}
 }
 
