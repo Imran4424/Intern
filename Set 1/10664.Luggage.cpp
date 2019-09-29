@@ -55,29 +55,38 @@ int FindMinDiff(int i, int currentSum)
 
 void ReadCase()
 {
+	string wholeLine, singleNum;
 
-	string sNum, singleNum;
-	char ch;
-
-	int x = 0, num;
+	int x = 0;
 	totalSum = 0;
 
-	getline(cin, sNum);
+	getline(cin, wholeLine);
 
-	for (int i = 0; i < sNum.size(); ++i)
+	cout << wholeLine << endl;
+
+	for (int i = 0; i < wholeLine.size(); ++i)
 	{
-		if (' ' == sNum[i])
+		if (' ' == wholeLine[i])
 		{
 			totalSum += stoi(singleNum);
 			luggages[x++] = stoi(singleNum);
 
-			singleNum.clear();
+			singleNum = "";
 		}
 		else
 		{
-			singleNum += sNum[i];
+			singleNum += wholeLine[i];
 		}
 	}
+
+	//for the last number
+
+	if (singleNum.size() > 0)
+	{
+		totalSum += stoi(singleNum);
+		luggages[x++] = stoi(singleNum);
+	}
+	
 
 	totalObject = x;
 
@@ -117,5 +126,6 @@ int main(int argc, char const *argv[])
 
 		Display();
 	}
+
 	return 0;
 }
