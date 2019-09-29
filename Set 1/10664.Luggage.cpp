@@ -21,6 +21,15 @@ void Init()
 	}
 }
 
+int Absolute(int x)
+{
+	if (x < 0)
+	{
+		return -x;
+	}
+
+	return x;
+}
 
 int FindMinDiff(int i, int currentSum)
 {
@@ -33,12 +42,7 @@ int FindMinDiff(int i, int currentSum)
 	{
 		int otherhalf = totalSum - currentSum;
 
-		if(currentSum == otherhalf)
-		{
-			return dpWeight[i][currentSum] = 0;
-		}
-
-		return dpWeight[i][currentSum] = 5;
+		return dpWeight[i][currentSum] = Absolute(currentSum - otherhalf);
 	}
 
 	int left = FindMinDiff(i+1, currentSum);
@@ -62,7 +66,7 @@ void ReadCase()
 
 	getline(cin, wholeLine);
 
-	cout << wholeLine << endl;
+	//cout << wholeLine << endl;
 
 	for (int i = 0; i < wholeLine.size(); ++i)
 	{
@@ -90,12 +94,12 @@ void ReadCase()
 
 	totalObject = x;
 
-	for (int i = 0; i < totalObject; ++i)
-	{
-		cout << luggages[i] << " ";
-	}
+	// for (int i = 0; i < totalObject; ++i)
+	// {
+	// 	cout << luggages[i] << " ";
+	// }
 
-	cout << totalSum << endl;
+	// cout << totalSum << endl;
 }
 
 void Display()
@@ -117,6 +121,8 @@ int main(int argc, char const *argv[])
 
 	int test;
 	cin >> test;
+
+	getchar();
 
 	while(test--)
 	{

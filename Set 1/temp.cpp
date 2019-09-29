@@ -17,7 +17,9 @@ int main(int argc, char const *argv[])
 
 	int test;
 	cin >> test;
-	
+
+	getchar();
+
 	while(test--)
 	{
 		ReadCase();
