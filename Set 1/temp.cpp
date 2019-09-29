@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 const int mSize = 21;
@@ -55,27 +56,20 @@ int FindMinDiff(int i, int currentSum)
 
 void ReadCase()
 {
-
-	string sNum, singleNum;
+	char num[3];
 	char ch;
 
-	int x = 0, num;
+	int x = 0;
 	totalSum = 0;
 
-	getline(cin, sNum);
-
-	for (int i = 0; i < sNum.size(); ++i)
+	while(scanf("%s %c", &num, &ch) == 2)
 	{
-		if (' ' == sNum[i])
-		{
-			totalSum += stoi(singleNum);
-			luggages[x++] = stoi(singleNum);
+		totalSum += atoi(num);
+		luggages[x++] = atoi(num);
 
-			singleNum.clear();
-		}
-		else
+		if (' ' != ch)
 		{
-			singleNum += sNum[i];
+			break;
 		}
 	}
 
@@ -87,6 +81,7 @@ void ReadCase()
 	}
 
 	cout << totalSum << endl;
+
 }
 
 void Display()
