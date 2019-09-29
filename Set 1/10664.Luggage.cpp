@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 using namespace std;
 
 const int mSize = 21;
@@ -54,14 +55,13 @@ int FindMinDiff(int i, int currentSum)
 
 void ReadCase()
 {
-	cin >> noskipws;
-
 	int num;
 	char ch;
 
 	int x = 0;
+	totalSum = 0;
 
-	while(cin >> num >> ch)
+	while(scanf("%d %c", &num, &ch) == 2)
 	{
 		totalSum += num;
 		luggages[x++] = num;
@@ -79,9 +79,8 @@ void ReadCase()
 		cout << luggages[i] << " ";
 	}
 
-	cout << endl;
+	cout << totalSum << endl;
 
-	cin >> skipws;
 }
 
 void Display()
