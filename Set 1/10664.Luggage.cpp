@@ -99,11 +99,13 @@ void ReadCase()
 	// 	cout << luggages[i] << " ";
 	// }
 
-	// cout << totalSum << endl;
+	//cout << totalSum << endl;
 }
 
 void Display()
 {
+	//cout << minDiff << endl;
+
 	if (0 == minDiff)
 	{
 		cout << "YES" << endl;
@@ -116,8 +118,8 @@ void Display()
 
 int main(int argc, char const *argv[])
 {
-	freopen("input.txt","r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("input.txt","r", stdin);
+	// freopen("output.txt", "w", stdout);
 
 	int test;
 	cin >> test;
@@ -127,6 +129,7 @@ int main(int argc, char const *argv[])
 	while(test--)
 	{
 		ReadCase();
+		Init();
 
 		minDiff = FindMinDiff(0, 0);
 
