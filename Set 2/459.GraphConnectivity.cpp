@@ -4,7 +4,7 @@ using namespace std;
 
 const int pSize = 27;
 
-int parent[pSize];	
+int path[pSize][pSize];	
 bool visited[pSize];
 char entry;
 char first, second;
@@ -16,33 +16,17 @@ void Init()
 {
 	for (int i = 0; i < parentCount; i++)
 	{
-		parent[i] = i;
 		visited[i] = false;
-	}
-}
 
-int SearchParent(int vertex)
-{
-	if (vertex == parent[vertex])
-	{
-		return vertex;
+		for (int j = 0; j < parentCount; ++j)
+		{
+			path[i][j] = 0;
+		}
 	}
 
-	return parent[vertex] = SearchParent(parent[vertex]);
+	
 }
 
-void Union(int xVertex, int yVertex)
-{
-	int xParent = SearchParent(xVertex);
-	int yParent = SearchParent(yVertex);
-
-	if (xParent != yParent)
-	{
-		parent[yParent] = xParent;
-
-		parentCount--;
-	}
-}
 
 void ReadCase()
 {
@@ -50,9 +34,7 @@ void ReadCase()
 
 	entry = inputString[0];
 	
-	int entryIndex = (int)(entry - 'A') + 1;
-
-	parentCount = entryIndex;
+	parentCount = (int)(entry - 'A') + 1;
 	
 	Init(); // clearing test cases
 
@@ -63,15 +45,14 @@ void ReadCase()
 			break;
 		}
 				
-		// cout << inputString << endl;
 		first = inputString[0];
 		second = inputString[1];
 
 		int firstIndex = (int)(first - 'A');
 		int secondIndex = (int)(second - 'A');
 
-		Union(firstIndex, secondIndex);
-		
+		path[firstIndex][secondIndex] = 1;
+		path[secondIndex][firstIndex] = 1;
 	}
 }
 
