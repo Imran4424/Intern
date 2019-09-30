@@ -3,7 +3,9 @@ using namespace std;
 
 typedef long long int lli;
 
-li number, query;
+lli number, query;
+
+lli 
 
 void ReadCase()
 {
