@@ -23,10 +23,37 @@ void Init()
 			path[i][j] = 0;
 		}
 	}
-
-	
 }
 
+void FillTravel(int x)
+{
+	visited[x] = true;
+
+	for (int i = 0; i < parentCount; ++i)
+	{
+		if (path[x][i] && !visited[i])
+		{
+			FillTravel(i);
+		}
+	}
+}
+
+void Solve()
+{
+	int pCount = 0;
+
+	for (int i = 0; i < parentCount; ++i)
+	{
+		if (!visited[i])
+		{
+			pCount++;
+			FillTravel(i);
+		}
+	}
+
+	// setting pCount as parentCount
+	parentCount = pCount;
+}
 
 void ReadCase()
 {
@@ -63,8 +90,8 @@ void Display()
 
 int main()
 {
-	// freopen("input.txt", "r", stdin);
-	// freopen("output.txt", "w", stdout);
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
 
 	int test;
 	// cin >> test;
@@ -76,6 +103,7 @@ int main()
 	while (test--)
 	{
 		ReadCase();
+		Solve();
 		Display();
 
 		if (test)
