@@ -14,7 +14,7 @@ int parentCount;
 
 void Init()
 {
-	for (int i = 0; i < pSize; i++)
+	for (int i = 0; i < parentCount; i++)
 	{
 		parent[i] = i;
 		visited[i] = false;
@@ -31,7 +31,7 @@ int SearchParent(int vertex)
 	return parent[vertex] = SearchParent(parent[vertex]);
 }
 
-int Union(int xVertex, int yVertex)
+void Union(int xVertex, int yVertex)
 {
 	int xParent = SearchParent(xVertex);
 	int yParent = SearchParent(yVertex);
@@ -40,10 +40,8 @@ int Union(int xVertex, int yVertex)
 	{
 		parent[yParent] = xParent;
 
-		return 1;
+		parentCount--;
 	}
-
-	return 0;
 }
 
 void ReadCase()
@@ -51,15 +49,12 @@ void ReadCase()
 	gets(inputString);
 
 	entry = inputString[0];
-
-	cout << entry << endl;
 	
-	int entryIndex = (int)(entry - 'A');
+	int entryIndex = (int)(entry - 'A') + 1;
 
-	visited[entryIndex] = true;
-	parentCount = 1;
-
+	parentCount = entryIndex;
 	
+	Init(); // clearing test cases
 
 	while (gets(inputString))
 	{
@@ -68,35 +63,15 @@ void ReadCase()
 			break;
 		}
 				
-		//cout << inputString << endl;
+		// cout << inputString << endl;
 		first = inputString[0];
 		second = inputString[1];
 
 		int firstIndex = (int)(first - 'A');
 		int secondIndex = (int)(second - 'A');
 
-		int reducedNum = Union(firstIndex, secondIndex);
-
-		if (!visited[firstIndex] && !visited[secondIndex])
-		{
-			parentCount++;
-			visited[firstIndex] = true;
-			visited[secondIndex] = true;
-		}
-		else if (!visited[firstIndex])
-		{
-			visited[firstIndex] = true;
-		}
-		else if (!visited[secondIndex])
-		{
-			visited[secondIndex] = true;
-		}
-		else
-		{
-			parentCount = parentCount - reducedNum;
-		}
-
-		//cout << parentCount << " ";
+		Union(firstIndex, secondIndex);
+		
 	}
 }
 
@@ -107,19 +82,18 @@ void Display()
 
 int main()
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
-
-	bool first = true;
+	// freopen("input.txt", "r", stdin);
+	// freopen("output.txt", "w", stdout);
 
 	int test;
-	scanf("%d", test);
+	// cin >> test;
+	scanf("%d", &test);
+
+	getchar();
+	getchar();
 
 	while (test--)
 	{
-		Init();
-		getchar();
-		getchar();
 		ReadCase();
 		Display();
 
