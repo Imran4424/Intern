@@ -8,7 +8,7 @@ char land[100][100];
 
 void ReadCase()
 {
-	while()
+	while(gets())
 }
 
 int main(int argc, char const *argv[])
