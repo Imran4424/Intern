@@ -113,11 +113,13 @@ int main()
 	bool first = true;
 
 	int test;
-	cin >> test;
+	scanf("%d", test);
 
 	while (test--)
 	{
 		Init();
+		getchar();
+		getchar();
 		ReadCase();
 		Display();
 
