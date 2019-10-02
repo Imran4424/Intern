@@ -83,6 +83,7 @@ int main(int argc, char const *argv[])
 	while(test--)
 	{
 		ReadCase();
+		Solve();
 		Display();
 	}
 
