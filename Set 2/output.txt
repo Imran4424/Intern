@@ -3,8 +3,8 @@
   X######XXXXXXXX////X
   X#############X////X
   XXXXXXXXXXXXXXXXXXXX
-_____________________________
   XXXXXXXXXXXXXXXXXXXX
+
    XXXXXXXXXXXX       XXXXXX
   X###########XXX  XXX   X X
   X##XX#########X  X     X X
@@ -14,4 +14,3 @@ _____________________________
    XX#####XXXX##X  X//////X
     X###########X  X//////X
     XXXXXXXXXXXXX  XXXXXXXX
-_____________________________
