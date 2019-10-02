@@ -88,6 +88,8 @@ int main(int argc, char const *argv[])
 	
 	row = 0;
 
+	printf("\n");
+
 	while(gets(grid[row]))
 	{
 		if('_' == grid[row][0])
