@@ -37,7 +37,7 @@ void Solve()
 {
 	for (int i = 0; i <= row; ++i)
 	{
-		for(int j = 0; grid[i][j] != '0'; j++)
+		for(int j = 0; grid[i][j] != '\0'; j++)
 		{
 			if ('*' == grid[i][j])
 			{
