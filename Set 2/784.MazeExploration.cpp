@@ -74,11 +74,11 @@ void Display()
 
 int main(int argc, char const *argv[])
 {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
+	// freopen("input.txt", "r", stdin);
+	// freopen("output.txt", "w", stdout);
 
 	int test;
-	scanf("%d", &test);
+	scanf("%d ", &test);
 
 	while(test--)
 	{
