@@ -76,10 +76,16 @@ void Display()
 {
 	for (int i = 0; i <= row; ++i)
 	{
+		if('\0' == grid[i][0])
+		{
+			printf("\n");
+
+			continue;
+		}
+		
 		printf("%s\n", grid[i]);
 	}
 
-	// printf("\n");
 }
 
 int main(int argc, char const *argv[])
