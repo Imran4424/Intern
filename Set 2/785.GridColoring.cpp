@@ -14,7 +14,7 @@ bool firstFound, secondFound;
 
 void FillTravel(int x, int y)
 {
-	grid[x][y] = '#';
+	grid[x][y] = currentChar;
 
 	if (' ' == grid[x - 1][y])
 	{
@@ -61,6 +61,11 @@ void Solve()
 				FillTravel(i, j);
 
 				secondFound = true;
+			}
+
+			if (firstFound && secondFound)
+			{
+				return;
 			}
 		}
 	}
