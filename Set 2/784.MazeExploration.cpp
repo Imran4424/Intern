@@ -87,6 +87,9 @@ int main(int argc, char const *argv[])
 		Display();
 	}
 
+	// for last test case
+	Solve();
+	Display();
 
 	return 0;
 }
