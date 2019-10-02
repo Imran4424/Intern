@@ -82,7 +82,7 @@ void Display()
 
 			continue;
 		}
-		
+
 		printf("%s\n", grid[i]);
 	}
 
@@ -99,12 +99,21 @@ int main(int argc, char const *argv[])
 
 	while(gets(grid[row]))
 	{
+		// if('\0' == grid[row][0])
+		// {
+		// 	grid[row][0] = ' ';
+		// 	grid[row][1] = ' ';
+		// 	grid[row][2] = '\0';
+		// }
+
 		if('_' == grid[row][0])
 		{
 			Solve();
 			Display();
 
 			row = 0;
+
+			//getchar();
 		}
 
 		row++;

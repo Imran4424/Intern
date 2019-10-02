@@ -5,7 +5,6 @@
   XXXXXXXXXXXXXXXXXXXX
 _____________________________
   XXXXXXXXXXXXXXXXXXXX
-
    XXXXXXXXXXXX       XXXXXX
   X###########XXX  XXX   X X
   X##XX#########X  X     X X
