@@ -78,6 +78,8 @@ void Display()
 	{
 		printf("%s\n", grid[i]);
 	}
+
+	// printf("\n");
 }
 
 int main(int argc, char const *argv[])
@@ -88,7 +90,6 @@ int main(int argc, char const *argv[])
 	
 	row = 0;
 
-	printf("\n");
 
 	while(gets(grid[row]))
 	{
