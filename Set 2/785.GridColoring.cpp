@@ -47,7 +47,7 @@ void Solve()
 		{
 			if ('#' == grid[i][j] && !firstFound)
 			{
-				currentChar = '#'
+				currentChar = '#';
 
 				FillTravel(i, j);
 
@@ -56,7 +56,7 @@ void Solve()
 
 			if ('/' == grid[i][j] && !secondFound)
 			{
-				currentChar = '/'
+				currentChar = '/';
 
 				FillTravel(i, j);
 
