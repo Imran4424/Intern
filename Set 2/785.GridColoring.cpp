@@ -101,5 +101,9 @@ int main(int argc, char const *argv[])
 		row++;
 	}
 
+	// for last test case
+	Solve();
+	Display();
+
 	return 0;
 }
